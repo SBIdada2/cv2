@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Frosted RGB Button</title>
+    <style>
+      /* 1. Set a dark background for the page so the glow and glass stand out */
+      body {
+        background-color: #121212;
+        color: white;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      /* 2. Define the keyframes to animate the border and glow colors */
+      @keyframes rgb-glow {
+        0% {
+          /* Red Glow */
+          box-shadow:
+            0 0 2px #ff0000,
+            /* Sharp inner border */ 0 0 10px rgba(255, 0, 0, 0.6); /* Soft outer glow */
+          border-color: rgba(255, 0, 0, 0.5); /* Slight border tint */
+        }
+        33% {
+          /* Green Glow */
+          box-shadow:
+            0 0 2px #00ff00,
+            0 0 10px rgba(0, 255, 0, 0.6);
+          border-color: rgba(0, 255, 0, 0.5);
+        }
+        66% {
+          /* Blue Glow */
+          box-shadow:
+            0 0 2px #0000ff,
+            0 0 10px rgba(0, 0, 255, 0.6);
+          border-color: rgba(0, 0, 255, 0.5);
+        }
+        100% {
+          /* Loop back to Red */
+          box-shadow:
+            0 0 2px #ff0000,
+            0 0 10px rgba(255, 0, 0, 0.6);
+          border-color: rgba(255, 0, 0, 0.5);
+        }
+      }
+
+      /* 3. Style the button */
+      .rgb-button {
+        /* --- Glassmorphism Core --- */
+        background: rgba(255, 255, 255, 0.05); /* Very faint white fill */
+        backdrop-filter: blur(12px); /* The blur effect */
+        -webkit-backdrop-filter: blur(12px); /* Safari support */
+
+        /* --- RGB Border/Glow --- */
+        border: 1px solid transparent; /* Border exists, color is animated */
+        border-radius: 12px;
+
+        /* --- Text and Spacing --- */
+        color: white;
+        padding: 15px 35px;
+        font-size: 22px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+
+        /* --- The Animation --- */
+        animation: rgb-glow 4s linear infinite; /* 4s loop */
+
+        /* Smooth interaction */
+        transition:
+          transform 0.2s,
+          background 0.3s;
+      }
+
+      /* 4. Hover effect */
+      .rgb-button:hover {
+        background: rgba(
+          255,
+          255,
+          255,
+          0.15
+        ); /* Slightly brighter glass on hover */
+        transform: translateY(-3px); /* Subtle lift */
+      }
+
+      /* 5. Click effect */
+      .rgb-button:active {
+        transform: translateY(1px) scale(0.98); /* Pushes down when clicked */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      Signing
+      <button class="rgb-button" onclick="location.href = 'sing.pdf'">
+        Download
+      </button>
+    </h1>
+    <h1>
+      CV
+      <button class="rgb-button" onclick="location.href = 'im-cv.jpg'">
+        Download
+      </button>
+    </h1>
+  </body>
+</html>
